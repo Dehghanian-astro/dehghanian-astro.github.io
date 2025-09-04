@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dr. Maryam Dehghanian</title>
+  <meta name="description" content="Astrophysicist • Cloudy developer • AGN outflows">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <style>
+    :root { --fg:#0b0b0b; --bg:#fff; --muted:#666; --brand:#3b82f6; --card:#f7f7f9; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color:var(--fg); background:var(--bg); line-height:1.6; }
+    header.hero { padding: 64px 20px 28px; text-align:center; background: linear-gradient(180deg, #f0f7ff, #fff); }
+    header.hero h1 { margin:0 0 6px; font-size: 38px; letter-spacing: -0.02em; }
+    header.hero p.tag { margin:0; color:var(--muted); font-size:18px; }
+    nav { display:flex; gap:12px; justify-content:center; margin-top:18px; flex-wrap: wrap; }
+    nav a { text-decoration:none; color:var(--brand); padding:6px 10px; border-radius:10px; }
+    nav a:hover { background:#eaf1ff; }
+    main { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
+    section { background: var(--card); padding:20px; border-radius:16px; margin: 18px 0; }
+    section h2 { margin: 0 0 8px; font-size: 22px; }
+    ul { padding-left: 18px; }
+    .grid { display:grid; grid-template-columns: 1fr; gap: 14px; }
+    @media(min-width:880px){ .grid { grid-template-columns: 1fr 1fr; } }
+    .pill { display:inline-block; font-size:12px; padding:4px 8px; border-radius:999px; background:#eef2ff; color:#3730a3; margin-right:6px; }
+    footer { text-align:center; padding: 30px 12px; color: var(--muted); }
+    .cv { display:inline-block; padding:8px 12px; border-radius:10px; border: 1px solid #dfe3ea; text-decoration:none; }
+    .cv:hover { background:#f1f5f9; }
+    .contact a { color: var(--brand); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>Dr. Maryam Dehghanian</h1>
+    <p class="tag">Astrophysicist • Cloudy developer • AGN outflows &amp; JWST</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#software">Software</a>
+      <a href="#talks">Talks</a>
+      <a href="#contact">Contact</a>
+      <a class="cv" href="cv.pdf">CV</a>
+    </nav>
+  </header>
+  <main>
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        I am a Postdoctoral Researcher at Virginia Tech working on quasar outflows and the Cloudy photoionization code.
+        I study multi-phase gas around active galactic nuclei using spectroscopy (JWST, DESI, etc.) and develop atomic databases for Cloudy.
+      </p>
+      <p>
+        Interests: <span class="pill">AGN</span> <span class="pill">Outflows</span> <span class="pill">Cloudy</span> <span class="pill">JWST</span> <span class="pill">Atomic data</span>
+      </p>
+    </section>
+
+    <section id="research">
+      <h2>Research</h2>
+      <div class="grid">
+        <div>
+          <h3>Galactic‑scale absorption outflows in quasars</h3>
+          <p>Measuring energetics (Ė, ṗ, Ṁ) and chemical abundances (N, S) in systems like 3C298 using UV/optical spectra and photoionization modeling.</p>
+        </div>
+        <div>
+          <h3>Cloudy atomic database updates (C‑like sequence)</h3>
+          <p>Integrating R‑matrix levels and collisions, cross‑checking NIST/Chianti; propagating theoretical energies to line identification.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2>Selected Publications</h2>
+      <ul>
+        <li>Dehghanian, M., et al., <em>Determining the absolute chemical abundance of nitrogen and sulfur in the quasar outflow of 3C298</em>, in prep.</li>
+        <li>Armus, L., et al., <em>GOALS‑JWST: Mid‑IR Spectroscopy of the Nucleus of NGC 7469</em>, ApJL (JWST/MIRI).</li>
+        <li>Ferland, G. J., et al., <em>The 2025 release of Cloudy</em>, arXiv:XXXX.XXXXX.</li>
+      </ul>
+      <p>See also <a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a> • <a href="https://ui.adsabs.harvard.edu/" target="_blank" rel="noopener">NASA ADS</a> • <a href="https://orcid.org/" target="_blank" rel="noopener">ORCID</a></p>
+    </section>
+
+    <section id="teaching">
+      <h2>Teaching & Mentoring</h2>
+      <ul>
+        <li>REU mentor (publication outcome), 2024</li>
+        <li>Cloudy Workshop organizer & instructor, 2025</li>
+      </ul>
+    </section>
+
+    <section id="software">
+      <h2>Software</h2>
+      <ul>
+        <li><strong>Cloudy</strong> developer — atomic DB updates; emission line uncertainty flags.</li>
+        <li>Python tools for ADS citation auditing and spectral analysis.</li>
+      </ul>
+    </section>
+
+    <section id="talks">
+      <h2>Talks</h2>
+      <ul>
+        <li>Invited: Cloudy models of AGNs/Quasars, AtomDB Workshop @ CfA/Harvard, 2025.</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+      <p>LinkedIn • Twitter/X • GitHub</p>
+    </section>
+  </main>
+  <footer>
+    © <span id="year"></span> Maryam Dehghanian
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
