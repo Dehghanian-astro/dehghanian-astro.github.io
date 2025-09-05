@@ -24,12 +24,13 @@
 	background: url("bg.jpg") no-repeat center center fixed;
 	background-size: cover; /* scales to fill screen */
 	}
-    header.hero { padding: 64px 20px 28px; text-align:center; background: linear-gradient(180deg, #f0f7ff, #fff); }
-    header.hero h1 { margin:0 0 6px; font-size: 38px; letter-spacing: -0.02em; }
-    header.hero p.tag { margin:0; color:var(--muted); font-size:18px; }
+    header.hero {padding: 64px 20px 28px;text-align: center;background: url("coverphoto.png") no-repeat center center;background-size: contain;}   
+    header.hero h1 { margin:0 0 6px; font-size: 38px; letter-spacing: -0.02em;color: #ffffff; }
+    header.hero p.tag { margin:0; color:var(--muted); font-size:18px;color: #ffcc00;  }
     nav { display:flex; gap:12px; justify-content:center; margin-top:18px; flex-wrap: wrap; }
-    nav a { text-decoration:none; color:var(--brand); padding:6px 10px; border-radius:10px; }
-    nav a:hover { background:#eaf1ff; }
+    nav a { text-decoration:none; color:var(--brand); padding:6px 10px; border-radius:10px;color: #ffffff;  }
+    nav a:hover {background: rgba(255, 255, 255, 0.2); /* light overlay when hovering */
+	    color: #ffcc00;  /* golden text on hover */}
     main { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
     section { background: var(--card); padding:20px; border-radius:16px; margin: 18px 0; }
     section h2 { margin: 0 0 8px; font-size: 22px; }
@@ -54,9 +55,9 @@
       <a href="#publications">Publications</a>
       <a href="#teaching">Teaching</a>
       <a href="#software">Software</a>
-      <a href="#talks">Talks</a>
+      <a href="#talks">Invaited Talks</a>
       <a href="#contact">Contact</a>
-      <a class="cv" href="cv.pdf">CV</a>
+      <a class="Full cv" href="cv.pdf">CV</a>
     </nav>
   </header>
   <main>
@@ -85,18 +86,96 @@
       </div>
     </section>
 
+   
+
+
+
+
+
+
+
     <section id="publications">
-      <h2>Selected Publications</h2>
-      <ul>
-        <li>Dehghanian, M., et al., <em>Determining the absolute chemical abundance of nitrogen and sulfur in the quasar outflow of 3C298</em>, in prep.</li>
-        <li>Armus, L., et al., <em>GOALS‑JWST: Mid‑IR Spectroscopy of the Nucleus of NGC 7469</em>, ApJL (JWST/MIRI).</li>
-        <li>Ferland, G. J., et al., <em>The 2025 release of Cloudy</em>, arXiv:XXXX.XXXXX.</li>
-      </ul>
-      <p>See also <a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a> • <a href="https://ui.adsabs.harvard.edu/" target="_blank" rel="noopener">NASA ADS</a> • <a href="https://orcid.org/" target="_blank" rel="noopener">ORCID</a></p>
-    </section>
+    <h2>Refereed Publications</h2>
+
+  <!-- Selected (always visible) -->
+    <ul>
+    <li>Dehghanian, M., et al., <em>Determining the absolute chemical abundance of nitrogen and sulfur in the quasar outflow of 3C298</em>, in prep.</li>
+    <li>Armus, L., et al., <em>GOALS-JWST: Mid-IR Spectroscopy of the Nucleus of NGC 7469</em>, ApJL.</li>
+    <li>Ferland, G. J., et al., <em>The 2025 release of Cloudy</em>, arXiv:XXXX.XXXXX.</li>
+    </ul>
+
+  <!-- Full list collapsed -->
+    <details>
+   	 <summary style="cursor:pointer">Show full list ▼</summary>
+    	<div class="pub-tools" style="margin:10px 0;">
+      	<a class="cv" href="publications.bib" download>Download BibTeX</a>
+     	 <a class="cv" href="publications-aastex.txt" download>Download AASTeX</a>
+     	 <span style="margin-left:8px;">| View:</span>
+     	 <button type="button" class="btn-small" data-view="bib">BibTeX</button>
+     	 <button type="button" class="btn-small" data-view="aas">AASTeX</button>
+      	<button type="button" class="btn-small" id="copy-cite">Copy visible</button>
+    	</div>
+
+    <!-- Where we load the files -->
+    <pre id="bib-view" style="white-space:pre-wrap; overflow:auto; background:#f7f7f9; padding:12px; border-radius:10px; border:1px solid #e6e6ef;"></pre>
+    <pre id="aas-view" style="white-space:pre-wrap; overflow:auto; background:#f7f7f9; padding:12px; border-radius:10px; border:1px solid #e6e6ef; display:none;"></pre>
+  </details>
+
+  <p style="margin-top:12px;">
+    See also <a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a> •
+    <a href="https://ui.adsabs.harvard.edu/" target="_blank" rel="noopener">NASA ADS</a> •
+    <a href="https://orcid.org/" target="_blank" rel="noopener">ORCID</a>
+  </p>
+</section>
+
+<script>
+  // Load files once the dropdown is opened
+  (function() {
+    const details = document.querySelector('#publications details');
+    let loaded = false;
+
+    details.addEventListener('toggle', async () => {
+      if (!details.open || loaded) return;
+      loaded = true;
+
+      // fetch BibTeX & AASTeX files from the repo
+      try {
+        const [bib, aas] = await Promise.all([
+          fetch('publications.bib').then(r => r.ok ? r.text() : Promise.reject('bib not found')),
+          fetch('publications.aastex').then(r => r.ok ? r.text() : Promise.reject('aas not found')),
+        ]);
+        document.getElementById('bib-view').textContent = bib.trim();
+        document.getElementById('aas-view').textContent = aas.trim();
+      } catch (e) {
+        document.getElementById('bib-view').textContent = 'Could not load publications files. Ensure publications.bib and publications.aastex are in the repo root.';
+      }
+    });
+
+    // toggle views
+    document.querySelectorAll('.btn-small[data-view]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const mode = btn.dataset.view;
+        document.getElementById('bib-view').style.display = (mode === 'bib') ? 'block' : 'none';
+        document.getElementById('aas-view').style.display = (mode === 'aas') ? 'block' : 'none';
+      });
+    });
+
+    // copy visible
+    document.getElementById('copy-cite').addEventListener('click', async () => {
+      const bib = document.getElementById('bib-view');
+      const aas = document.getElementById('aas-view');
+      const text = (aas.style.display === 'block' ? aas.textContent : bib.textContent) || '';
+      try { await navigator.clipboard.writeText(text); alert('Copied to clipboard'); }
+      catch { alert('Copy failed'); }
+    });
+  })();
+</script>
+    
+    
+
 
     <section id="teaching">
-      <h2>Teaching & Mentoring</h2>
+      <h2>Recent Teaching & Mentoring</h2>
       <ul>
         <li>REU mentor (publication outcome), 2024</li>
         <li>Cloudy Workshop organizer & instructor, 2025</li>
@@ -112,15 +191,29 @@
     </section>
 
     <section id="talks">
-      <h2>Talks</h2>
+      <h2>Invited Talks</h2>
       <ul>
-        <li>Invited: Cloudy models of AGNs/Quasars, AtomDB Workshop @ CfA/Harvard, 2025.</li>
+        <li> Space Telescope Science Institute, Nov 2025</li>
+        <li>Western Kentucky University, Oct 2025 </li>
+        <li>AtomDB WorkshopCenter for Astrophysics— Harvard & Smithsonian,Aug 2025</li>
+        <li>University of Michigan, Dec 2024</li>
+        <li>Catholic University of America - Washington, DC, Dec 2023</li>
+        <li>Department of Astronomy, Tsinghua University, China, Dec 2022</li>
+        <li>Department of Physics and Astronomy, University of North Georgia, Oct 2022</li>
+        <li>Dean’s Development Council Meeting, The University of Kentucky, Dec 2021</li>
+        <li>Postdoc Research & Career Symposium, University of Kentucky, Oct 2021</li>
+        <li>University of Durham, United Kingdom, Sep 2021</li>
+        <li>Los Alamos National Lab, New Mexico, July 2021</li>
+        <li>The Kentucky Academy of Science’s Bench Talk Live series, March 2021</li>
+        <li>STORM annual meeting, Space Telescope Science Institute, July 2019</li>
+        <li>Astrophysical Seminar, Virginia Polytechnic Institute and State University, April 2019</li>
+        <li>Astrophysical Seminar, The University of Kentucky, Jan 2019</li>
       </ul>
     </section>
 
     <section id="contact" class="contact">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+      <p>Email: <a href="mailto:m.dehghanian@uky.edu">m.dehghanian@uky.edu</a></p>
       <p>LinkedIn • Twitter/X • GitHub</p>
     </section>
   </main>
